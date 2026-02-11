@@ -125,6 +125,12 @@ button:hover {
 </style>
 </head>
 
+  <script>
+  document.getElementById("btnAmor").addEventListener("click", () => {
+    alert("💖 Sabía que dirías que sí 💖");
+  });
+</script>
+
 <body>
 
 <div class="contenedor">
@@ -138,7 +144,10 @@ button:hover {
         <p>💖</p>
         <p>Desde que te conocí mi mundo empezó a brillar 💕<br>
         ¿Te gustaría ser mi San Valentín? 💞</p>
-        <button>Toca aquí</button>
+       <button id="btnAmor">
+  Toca aquí
+</button>
+
       </div>
     </div>
   </div>
@@ -164,6 +173,7 @@ setInterval(crearCorazon, 300);
 
 </body>
 </html>
+
 
 
 
