@@ -27,7 +27,7 @@ body {
 /* =================== */
 .sobre {
   width: 340px;
-  height: 230px;
+  min-height: 230px;
   background: #f1c0c8;
   position: relative;
   overflow: hidden;
@@ -54,7 +54,7 @@ body {
 }
 
 .sobre.abierto .solapa {
-  transform: rotateX(180deg);
+  transform: translateY(20px);
 }
 
 /* =================== */
@@ -182,6 +182,14 @@ button {
 /* AJUSTES CELULAR */
 /* =================== */
 @media (max-width: 480px) {
+   .sobre {
+    min-height: 360px;
+  }
+
+  .carta {
+    align-items: flex-start;
+    padding-top: 20px;
+  }
   body {
     padding-top: 30px;
   }
@@ -268,3 +276,4 @@ setInterval(crearKitty, 1800);
 
 </body>
 </html>
+
