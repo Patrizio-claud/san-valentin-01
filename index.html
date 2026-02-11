@@ -26,6 +26,7 @@ body {
   height: 230px;
   background: #f1c0c8;
   position: relative;
+  overflow: hidden;
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 15px 40px rgba(0,0,0,.3);
@@ -181,6 +182,12 @@ button {
     border-radius: 14px;
   }
 }
+  @media (max-width: 480px) {
+  .solapa {
+    top: 0;        /* baja la solapa */
+    transform: scale(0.9); /* la hace un poquito más chica */
+  }
+}
 </style>
 </head>
 
@@ -240,6 +247,7 @@ setInterval(kitty, 1800);
 
 </body>
 </html>
+
 
 
 
