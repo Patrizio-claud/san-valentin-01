@@ -14,16 +14,15 @@ body {
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 40px;
-  overflow-x: hidden;
+  align-items: center; /* 👈 CLAVE */
+  overflow: hidden;
 }
 
-/* SOBRE */
+/* SOBRE (MAS PEQUEÑO) */
 .sobre {
   position: relative;
-  width: 340px;
-  height: 230px;
+  width: 300px;          /* 👈 antes 340 */
+  height: 200px;         /* 👈 antes 230 */
   background: #f1c0c8;
   border-radius: 12px;
   box-shadow: 0 15px 40px rgba(0,0,0,.3);
@@ -38,15 +37,14 @@ body {
   left: 0;
   width: 0;
   height: 0;
-  border-left: 170px solid transparent;
-  border-right: 170px solid transparent;
-  border-top: 120px solid #eaa0aa;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 100px solid #eaa0aa;
   transform-origin: top;
   transition: transform 1s ease;
-  z-index: 1; /* IMPORTANTE */
+  z-index: 1;
 }
 
-/* al abrir, se pliega hacia atrás */
 .sobre.abierto .solapa {
   transform: rotateX(180deg);
 }
@@ -57,12 +55,11 @@ body {
   inset: 0;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 35px;
+  align-items: center;
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(25px);
   transition: all 1s ease;
-  z-index: 2; /* SIEMPRE ADELANTE */
+  z-index: 2;
 }
 
 .sobre.abierto .carta {
@@ -70,42 +67,42 @@ body {
   transform: translateY(0);
 }
 
-/* TARJETA (PEQUEÑA COMO ANTES) */
+/* TARJETA (IGUAL QUE ANTES) */
 .tarjeta {
   background: #fff;
-  padding: 18px;
+  padding: 16px;
   border-radius: 20px;
   text-align: center;
-  width: 88%;
-  max-width: 280px;
+  width: 85%;
+  max-width: 260px;
   box-shadow: 0 18px 35px rgba(0,0,0,0.25);
 }
 
 .tarjeta img {
   width: 100%;
   border-radius: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 h1 {
   color: #e63946;
-  font-size: 22px;
+  font-size: 20px;
   margin: 6px 0;
 }
 
 p {
-  font-size: 15px;
+  font-size: 14px;
   color: #444;
 }
 
 button {
-  margin-top: 12px;
+  margin-top: 10px;
   background: #e63946;
   color: white;
   border: none;
-  padding: 12px 26px;
+  padding: 10px 24px;
   border-radius: 30px;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
 }
 
@@ -122,11 +119,10 @@ button {
 
 .mensaje div {
   background: white;
-  padding: 25px 30px;
+  padding: 25px;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.4);
-  text-align: center;
   font-size: 18px;
+  text-align: center;
 }
 
 /* CORAZONES */
@@ -161,16 +157,15 @@ button {
 
 /* CELULAR */
 @media (max-width: 480px) {
-  body {
-    padding-top: 30px;
+  .sobre {
+    width: 270px;
+    height: 185px;
   }
 
-  h1 {
-    font-size: 20px;
-  }
-
-  p {
-    font-size: 14px;
+  .solapa {
+    border-left: 135px solid transparent;
+    border-right: 135px solid transparent;
+    border-top: 95px solid #eaa0aa;
   }
 }
 </style>
