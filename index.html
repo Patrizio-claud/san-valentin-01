@@ -5,6 +5,25 @@
 <title>❤️ Para Ti Mi Niña ❤️</title>
 
 <style>
+  .kitty {
+  position: absolute;
+  bottom: -60px;
+  animation: flotarKitty 8s linear forwards;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+@keyframes flotarKitty {
+  from {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120vh) rotate(20deg);
+    opacity: 0;
+  }
+}
+
 body {
   margin: 0;
   height: 100vh;
@@ -125,9 +144,25 @@ function crearCorazon() {
 
   setTimeout(() => corazon.remove(), 6000);
 }
+  <script>
+function crearKitty() {
+  const kitty = document.createElement("img");
+  kitty.src = "hello.png";   // tu imagen de Hello Kitty
+  kitty.className = "kitty";
+  kitty.style.left = Math.random() * 100 + "vw";
+  kitty.style.width = (40 + Math.random() * 30) + "px";
+  document.body.appendChild(kitty);
+
+  setTimeout(() => kitty.remove(), 8000);
+}
+
+setInterval(crearKitty, 2000);
+</script>
+
 
 setInterval(crearCorazon, 300);
 </script>
 
 </body>
 </html>
+
