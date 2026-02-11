@@ -6,39 +6,29 @@
 <title>💖 Para Ti Mi Amor 💖</title>
 
 <style>
-/* ===================== */
-/* FONDO GENERAL */
-/* ===================== */
+/* FONDO */
 body {
   margin: 0;
   min-height: 100vh;
   background: linear-gradient(135deg, #ff9a9e, #fad0c4);
   font-family: Arial, sans-serif;
-  overflow-x: hidden;
-
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px 0;
+  padding-top: 40px;
+  overflow-x: hidden;
 }
 
-/* CONTENEDOR CENTRAL */
-.wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-/* ===================== */
 /* SOBRE */
-/* ===================== */
 .sobre {
   position: relative;
   width: 340px;
+  height: 230px;
   background: #f1c0c8;
-  border-radius: 14px;
+  border-radius: 12px;
   box-shadow: 0 15px 40px rgba(0,0,0,.3);
   overflow: hidden;
+  cursor: pointer;
 }
 
 /* SOLAPA */
@@ -53,24 +43,26 @@ body {
   border-top: 120px solid #eaa0aa;
   transform-origin: top;
   transition: transform 1s ease;
-  z-index: 5;
+  z-index: 1; /* IMPORTANTE */
 }
 
+/* al abrir, se pliega hacia atrás */
 .sobre.abierto .solapa {
   transform: rotateX(180deg);
 }
 
-/* ===================== */
 /* CARTA */
-/* ===================== */
 .carta {
-  position: relative;
-  padding: 140px 0 30px;
+  position: absolute;
+  inset: 0;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  padding-top: 35px;
   opacity: 0;
   transform: translateY(30px);
   transition: all 1s ease;
+  z-index: 2; /* SIEMPRE ADELANTE */
 }
 
 .sobre.abierto .carta {
@@ -78,26 +70,27 @@ body {
   transform: translateY(0);
 }
 
-/* TARJETA */
+/* TARJETA (PEQUEÑA COMO ANTES) */
 .tarjeta {
   background: #fff;
   padding: 18px;
-  border-radius: 22px;
+  border-radius: 20px;
   text-align: center;
   width: 88%;
-  max-width: 300px;
+  max-width: 280px;
   box-shadow: 0 18px 35px rgba(0,0,0,0.25);
 }
 
 .tarjeta img {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 15px;
   margin-bottom: 10px;
 }
 
 h1 {
   color: #e63946;
   font-size: 22px;
+  margin: 6px 0;
 }
 
 p {
@@ -106,7 +99,7 @@ p {
 }
 
 button {
-  margin-top: 15px;
+  margin-top: 12px;
   background: #e63946;
   color: white;
   border: none;
@@ -116,16 +109,14 @@ button {
   cursor: pointer;
 }
 
-/* ===================== */
 /* MENSAJE */
-/* ===================== */
 .mensaje {
   position: fixed;
   inset: 0;
+  background: rgba(0,0,0,.35);
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,.3);
   z-index: 999;
 }
 
@@ -134,13 +125,11 @@ button {
   padding: 25px 30px;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0,0,0,.4);
-  font-size: 18px;
   text-align: center;
+  font-size: 18px;
 }
 
-/* ===================== */
 /* CORAZONES */
-/* ===================== */
 .corazon {
   position: absolute;
   bottom: -20px;
@@ -170,12 +159,10 @@ button {
   }
 }
 
-/* ===================== */
 /* CELULAR */
-/* ===================== */
 @media (max-width: 480px) {
   body {
-    padding: 30px 0;
+    padding-top: 30px;
   }
 
   h1 {
@@ -191,20 +178,18 @@ button {
 
 <body>
 
-<div class="wrapper">
-  <div class="sobre" onclick="abrirSobre()">
-    <div class="solapa"></div>
+<div class="sobre" onclick="abrirSobre()">
+  <div class="solapa"></div>
 
-    <div class="carta">
-      <div class="tarjeta">
-        <img src="foto.jpg">
-        <h1>Oliss mi Amoooor ❤️</h1>
-        <p>
-          Desde que te conocí mi mundo cambió 💖<br>
-          ¿Quieres ser mi San Valentín? 💕
-        </p>
-        <button onclick="mostrarMensaje(event)">Toca aquí</button>
-      </div>
+  <div class="carta">
+    <div class="tarjeta">
+      <img src="foto.jpg">
+      <h1>Oliss mi Amoooor ❤️</h1>
+      <p>
+        Desde que te conocí mi mundo cambió 💖<br>
+        ¿Quieres ser mi San Valentín? 💕
+      </p>
+      <button onclick="mostrarMensaje(event)">Toca aquí</button>
     </div>
   </div>
 </div>
@@ -216,18 +201,14 @@ function abrirSobre() {
 
 function mostrarMensaje(e) {
   e.stopPropagation();
-
-  const overlay = document.createElement("div");
-  overlay.className = "mensaje";
-  overlay.innerHTML = `
-    <div>💖<br>Eres el amor de mi vida Kami<br>💖</div>
-  `;
-  document.body.appendChild(overlay);
-
-  overlay.onclick = () => overlay.remove();
+  const m = document.createElement("div");
+  m.className = "mensaje";
+  m.innerHTML = `<div>💖<br>Eres el amor de mi vida Kami<br>💖</div>`;
+  document.body.appendChild(m);
+  m.onclick = () => m.remove();
 }
 
-/* CORAZONES */
+/* corazones */
 setInterval(() => {
   const c = document.createElement("div");
   c.className = "corazon";
@@ -238,7 +219,7 @@ setInterval(() => {
   setTimeout(() => c.remove(), 6000);
 }, 150);
 
-/* HELLO KITTY */
+/* hello kitty */
 setInterval(() => {
   const k = document.createElement("img");
   k.src = "hello.png";
