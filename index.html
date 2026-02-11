@@ -6,7 +6,6 @@
 <title>💖 Para Ti Mi Amor 💖</title>
 
 <style>
-/* FONDO */
 body {
   margin: 0;
   min-height: 100vh;
@@ -14,19 +13,20 @@ body {
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
-  align-items: center; /* 👈 CLAVE */
+  align-items: center;
   overflow: hidden;
 }
 
-/* SOBRE (MAS PEQUEÑO) */
+/* SOBRE */
 .sobre {
   position: relative;
-  width: 300px;          /* 👈 antes 340 */
-  height: 200px;         /* 👈 antes 230 */
+  width: 300px;
+  height: 200px;
   background: #f1c0c8;
   border-radius: 12px;
   box-shadow: 0 15px 40px rgba(0,0,0,.3);
   cursor: pointer;
+  overflow: visible;
 }
 
 /* SOLAPA */
@@ -42,10 +42,12 @@ body {
   transform-origin: top;
   transition: transform 1s ease;
   z-index: 1;
+  pointer-events: none;
 }
 
 .sobre.abierto .solapa {
   transform: rotateX(180deg);
+  z-index: 0;
 }
 
 /* CARTA */
@@ -56,17 +58,17 @@ body {
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transform: translateY(25px);
+  transform: translateY(18px);
   transition: all 1s ease;
   z-index: 2;
 }
 
 .sobre.abierto .carta {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(8px);
 }
 
-/* TARJETA (IGUAL QUE ANTES) */
+/* TARJETA */
 .tarjeta {
   background: #fff;
   padding: 16px;
@@ -227,4 +229,3 @@ setInterval(() => {
 
 </body>
 </html>
-
