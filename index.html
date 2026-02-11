@@ -15,8 +15,8 @@
       font-family: Arial, sans-serif;
       overflow: hidden;
     }
-
-   .tarjeta {
+/* TARJETA (empieza escondida) */
+.tarjeta {
   background: #fff;
   padding: 30px;
   border-radius: 20px;
@@ -25,11 +25,17 @@
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   z-index: 2;
 
-  /* NUEVO */
   opacity: 0;
   transform: translateY(40px) scale(0.9);
   transition: all 1s ease;
 }
+
+/* CUANDO EL SOBRE SE ABRE */
+.sobre.abierto .tarjeta {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+    
 .sobre.abierto .tarjeta {
   opacity: 1;
   transform: translateY(0) scale(1);
@@ -95,19 +101,28 @@
 </head>
 <body>
 
-  <div class="tarjeta">
-    <img src="foto.jpg" alt="Nuestra foto">
-    <h1>Oliss mi Amoooor❤️</h1>
-    <p>
-      Desde que te conoci mi mundo empezo a brillar, eres lo mas lindo que me ha pasado mi vida!!!.<br>
-      ¿Te gustaría ser mi San Valentín? 💕
-    </p>
-    <button onclick="alert('💖 Sabía que dirías que sí 💖')">
-      Toca aquí
-    </button>
+  <div class="sobre" id="sobre">
+    <div class="tarjeta">
+      <img src="foto.jpg" alt="Nuestra foto">
+      <h1>Oliss mi Amoooor❤️</h1>
+      <p>
+        Desde que te conocí mi mundo empezó a brillar 💖<br>
+        ¿Te gustaría ser mi San Valentín? 💕
+      </p>
+      <button onclick="alert('💖 Sabía que dirías que sí 💖')">
+        Toca aquí
+      </button>
+    </div>
   </div>
 
   <script>
+    // abrir el sobre al cargar
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById("sobre").classList.add("abierto");
+      }, 800);
+    };
+
     function crearCorazon() {
       const corazon = document.createElement("div");
       corazon.className = "corazon";
@@ -123,5 +138,7 @@
   </script>
 
 </body>
+
 </html>
+
 
