@@ -5,6 +5,36 @@
   <title>❤️ Para Ti Mi Niña ❤️</title>
 
   <style>
+    .tarjeta {
+  animation: entradaSuave 1.2s ease;
+}
+
+@keyframes entradaSuave {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+h1, p, button {
+  animation: textoSuave 1.5s ease forwards;
+}
+
+@keyframes textoSuave {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
     body {
       margin: 0;
       height: 100vh;
@@ -115,3 +145,4 @@
 
 </body>
 </html>
+
