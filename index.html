@@ -15,36 +15,81 @@
       font-family: Arial, sans-serif;
       overflow: hidden;
     }
-/* TARJETA (empieza escondida) */
-.tarjeta {
-  background: #fff;
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
-  width: 300px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  z-index: 2;
 
-  opacity: 0;
-  transform: translateY(40px) scale(0.9);
-  transition: all 1s ease;
-}
+    /* CONTENEDOR */
+    .contenedor {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-/* CUANDO EL SOBRE SE ABRE */
-.sobre.abierto .tarjeta {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-    
-.sobre.abierto .tarjeta {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
+    /* SOBRE */
+    .sobre {
+      width: 320px;
+      height: 220px;
+      position: relative;
+      cursor: pointer;
+      perspective: 1000px;
+    }
 
+    .espalda {
+      position: absolute;
+      inset: 0;
+      background: #ffb3c6;
+      border-radius: 12px;
+      z-index: 1;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
 
-    @keyframes aparecer {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
+    .solapa {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: #ff758f;
+      clip-path: polygon(0 0, 100% 0, 50% 55%);
+      transform-origin: top;
+      transition: transform 1s ease;
+      z-index: 3;
+    }
+
+    .carta {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: translateY(40px);
+      transition: transform 1s ease;
+      z-index: 2;
+    }
+
+    /* TARJETA */
+    .tarjeta {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(40px) scale(0.9);
+      transition: all 1s ease;
+    }
+
+    /* ANIMACIONES */
+    .sobre.abierto .solapa {
+      transform: rotateX(180deg);
+    }
+
+    .sobre.abierto .carta {
+      transform: translateY(-60px);
+    }
+
+    .sobre.abierto .tarjeta {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     img {
@@ -79,7 +124,7 @@
       transform: scale(1.1);
     }
 
-    /* corazones flotando */
+    /* CORAZONES */
     .corazon {
       position: absolute;
       color: rgba(255,0,80,0.6);
@@ -99,29 +144,34 @@
     }
   </style>
 </head>
+
 <body>
 
-  <div class="sobre" id="sobre">
-    <div class="tarjeta">
-      <img src="foto.jpg" alt="Nuestra foto">
-      <h1>Oliss mi Amoooor❤️</h1>
-      <p>
-        Desde que te conocí mi mundo empezó a brillar 💖<br>
-        ¿Te gustaría ser mi San Valentín? 💕
-      </p>
-      <button onclick="alert('💖 Sabía que dirías que sí 💖')">
-        Toca aquí
-      </button>
+  <div class="contenedor">
+    <div class="sobre" onclick="abrirSobre()">
+      <div class="espalda"></div>
+      <div class="solapa"></div>
+
+      <div class="carta">
+        <div class="tarjeta">
+          <img src="foto.jpg" alt="Nuestra foto">
+          <h1>Oliss mi Amoooor❤️</h1>
+          <p>
+            Desde que te conoci mi mundo empezo a brillar,<br>
+            ¿Te gustaría ser mi San Valentín? 💕
+          </p>
+          <button onclick="alert('💖 Sabía que dirías que sí 💖')">
+            Toca aquí
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    // abrir el sobre al cargar
-    window.onload = () => {
-      setTimeout(() => {
-        document.getElementById("sobre").classList.add("abierto");
-      }, 800);
-    };
+    function abrirSobre() {
+      document.querySelector(".sobre").classList.add("abierto");
+    }
 
     function crearCorazon() {
       const corazon = document.createElement("div");
@@ -130,7 +180,6 @@
       corazon.style.left = Math.random() * 100 + "vw";
       corazon.style.fontSize = (20 + Math.random() * 20) + "px";
       document.body.appendChild(corazon);
-
       setTimeout(() => corazon.remove(), 6000);
     }
 
@@ -138,7 +187,5 @@
   </script>
 
 </body>
-
 </html>
-
 
