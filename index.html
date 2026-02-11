@@ -6,6 +6,9 @@
 <title>💖 Para Ti Mi Amor 💖</title>
 
 <style>
+/* =================== */
+/* FONDO GENERAL */
+/* =================== */
 body {
   margin: 0;
   min-height: 100vh;
@@ -19,19 +22,21 @@ body {
   padding-top: 40px;
 }
 
-
+/* =================== */
 /* SOBRE */
+/* =================== */
 .sobre {
   width: 340px;
   height: 230px;
   background: #f1c0c8;
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   box-shadow: 0 15px 40px rgba(0,0,0,.3);
 }
 
+/* SOLAPA */
 .solapa {
   position: absolute;
   width: 0;
@@ -39,9 +44,11 @@ body {
   border-left: 170px solid transparent;
   border-right: 170px solid transparent;
   border-top: 120px solid #eaa0aa;
-  top: 0;
+
+  top: -20px;
   left: 0;
-  transform-origin: top;
+
+  transform-origin: top center;
   transition: transform 1s;
   z-index: 5;
 }
@@ -50,6 +57,9 @@ body {
   transform: rotateX(180deg);
 }
 
+/* =================== */
+/* CARTA */
+/* =================== */
 .carta {
   position: absolute;
   width: 100%;
@@ -57,6 +67,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
   transform: translateY(40px);
   opacity: 0;
   transition: all 1s ease;
@@ -67,7 +78,9 @@ body {
   opacity: 1;
 }
 
+/* =================== */
 /* TARJETA */
+/* =================== */
 .tarjeta {
   background: #fff;
   padding: 18px;
@@ -78,12 +91,6 @@ body {
   max-width: 300px;
 
   box-shadow: 0 18px 35px rgba(0,0,0,0.25);
-  animation: aparecer 1.2s ease forwards;
-}
-
-@keyframes latido {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
 }
 
 .tarjeta img {
@@ -102,6 +109,7 @@ p {
   color: #444;
 }
 
+/* BOTÓN */
 button {
   margin-top: 15px;
   background: #e63946;
@@ -113,7 +121,9 @@ button {
   cursor: pointer;
 }
 
-/* MENSAJE */
+/* =================== */
+/* MENSAJE EMERGENTE */
+/* =================== */
 .mensaje {
   position: fixed;
   top: 50%;
@@ -129,7 +139,14 @@ button {
   animation: aparecer .5s ease;
 }
 
+@keyframes aparecer {
+  from { opacity: 0; transform: translate(-50%, -60%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* =================== */
 /* CORAZONES */
+/* =================== */
 .corazon {
   position: absolute;
   bottom: -20px;
@@ -144,7 +161,9 @@ button {
   }
 }
 
+/* =================== */
 /* HELLO KITTY */
+/* =================== */
 .kitty {
   position: absolute;
   bottom: -60px;
@@ -158,16 +177,22 @@ button {
     opacity: 0;
   }
 }
-  <style>
-/* TODO TU CSS NORMAL ARRIBA */
-/* body, .tarjeta, h1, p, button, corazones, kitty, etc */
 
-/* ========================= */
-/* AJUSTES SOLO PARA CELULAR */
-/* ========================= */
+/* =================== */
+/* AJUSTES CELULAR */
+/* =================== */
 @media (max-width: 480px) {
   body {
     padding-top: 30px;
+  }
+
+  .sobre {
+    height: 210px;
+  }
+
+  .solapa {
+    top: -35px;
+    transform: scale(0.85);
   }
 
   h1 {
@@ -182,12 +207,6 @@ button {
     border-radius: 14px;
   }
 }
-  @media (max-width: 480px) {
-  .solapa {
-    top: 0;        /* baja la solapa */
-    transform: scale(0.9); /* la hace un poquito más chica */
-  }
-}
 </style>
 </head>
 
@@ -198,7 +217,7 @@ button {
 
   <div class="carta">
     <div class="tarjeta">
-      <img src="foto.jpg">
+      <img src="foto.jpg" alt="Nuestra foto">
       <h1>Oliss mi Amoooor ❤️</h1>
       <p>
         Desde que te conocí mi mundo cambió 💖<br>
@@ -222,7 +241,8 @@ function mostrarMensaje() {
   setTimeout(() => msg.remove(), 3500);
 }
 
-function corazon() {
+/* CORAZONES */
+function crearCorazon() {
   const c = document.createElement("div");
   c.className = "corazon";
   c.innerText = Math.random() > 0.5 ? "❤️" : "💖";
@@ -231,9 +251,10 @@ function corazon() {
   document.body.appendChild(c);
   setTimeout(() => c.remove(), 6000);
 }
-setInterval(corazon, 150);
+setInterval(crearCorazon, 150);
 
-function kitty() {
+/* HELLO KITTY */
+function crearKitty() {
   const k = document.createElement("img");
   k.src = "hello.png";
   k.className = "kitty";
@@ -242,12 +263,8 @@ function kitty() {
   document.body.appendChild(k);
   setTimeout(() => k.remove(), 8000);
 }
-setInterval(kitty, 1800);
+setInterval(crearKitty, 1800);
 </script>
 
 </body>
 </html>
-
-
-
-
