@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❤️ Para Ti Mi Niña ❤️</title>
+<title>💖 Para Ti Mi Amor 💖</title>
 
 <style>
-/* FONDO */
 body {
   margin: 0;
   height: 100vh;
@@ -18,56 +17,87 @@ body {
   overflow: hidden;
 }
 
+/* SOBRE */
+.sobre {
+  width: 340px;
+  height: 230px;
+  background: #f1c0c8;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 15px 40px rgba(0,0,0,.3);
+}
+
+.solapa {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 170px solid transparent;
+  border-right: 170px solid transparent;
+  border-top: 120px solid #eaa0aa;
+  top: 0;
+  left: 0;
+  transform-origin: top;
+  transition: transform 1s;
+  z-index: 5;
+}
+
+.sobre.abierto .solapa {
+  transform: rotateX(180deg);
+}
+
+.carta {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.sobre.abierto .carta {
+  transform: translateY(-40px);
+  opacity: 1;
+}
+
 /* TARJETA */
 .tarjeta {
-  background: #fff;
+  background: white;
   padding: 22px;
   border-radius: 20px;
-  text-align: center;
-
   width: 90%;
-  max-width: 320px;
-
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-  animation: aparecer 1.2s ease forwards;
-  z-index: 10;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,.3);
+  animation: latido 2s infinite;
 }
 
-
-@keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+@keyframes latido {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
 }
 
-/* IMAGEN */
 .tarjeta img {
   width: 100%;
-  border-radius: 16px;
-  margin-bottom: 15px;
+  border-radius: 15px;
+  margin-bottom: 10px;
 }
 
-/* TEXTO */
 h1 {
   color: #e63946;
-  margin-bottom: 10px;
   font-size: 22px;
 }
 
 p {
-  color: #444;
   font-size: 15px;
-  line-height: 1.4;
+  color: #444;
 }
 
-/* BOTÓN */
 button {
-  margin-top: 18px;
+  margin-top: 15px;
   background: #e63946;
   color: white;
   border: none;
@@ -75,29 +105,33 @@ button {
   border-radius: 30px;
   font-size: 16px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+/* MENSAJE */
+.mensaje {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 25px 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+  font-size: 18px;
+  text-align: center;
+  z-index: 999;
+  animation: aparecer .5s ease;
 }
 
 /* CORAZONES */
 .corazon {
   position: absolute;
   bottom: -20px;
-  color: rgba(255, 0, 80, 0.7);
   animation: flotar 6s linear forwards;
-  user-select: none;
   pointer-events: none;
 }
 
 @keyframes flotar {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
   to {
     transform: translateY(-120vh);
     opacity: 0;
@@ -108,79 +142,74 @@ button:hover {
 .kitty {
   position: absolute;
   bottom: -60px;
-  animation: flotarKitty 9s linear forwards;
-  opacity: 0.9;
+  animation: flotarKitty 8s linear forwards;
   pointer-events: none;
 }
 
 @keyframes flotarKitty {
-  from {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
   to {
     transform: translateY(-130vh) rotate(20deg);
     opacity: 0;
   }
-}
-
-/* AJUSTES CELULAR */
-@media (max-width: 300px) {
-  h1 { font-size: 20px; }
-  p { font-size: 14px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="tarjeta">
-  <img src="foto.jpg" alt="Nuestra foto">
-  <h1>Oliss mi Amoooor ❤️</h1>
-  <p>
-    Desde que te conocí mi mundo empezó a brillar 💖<br>
-    ¿Te gustaría ser mi San Valentín? 💕
-  </p>
-  <button id="btnAmor">Toca aquí</button>
+<div class="sobre" onclick="abrirSobre()">
+  <div class="solapa"></div>
+
+  <div class="carta">
+    <div class="tarjeta">
+      <img src="foto.jpg">
+      <h1>Oliss mi Amoooor ❤️</h1>
+      <p>
+        Desde que te conocí mi mundo cambió 💖<br>
+        ¿Quieres ser mi San Valentín? 💕
+      </p>
+      <button onclick="mostrarMensaje()">Toca aquí</button>
+    </div>
+  </div>
 </div>
 
 <script>
-/* BOTÓN */
-document.getElementById("btnAmor").addEventListener("click", () => {
-  alert("💖 Eres el amor de mi vida Kami 💖");
-});
-
-/* CORAZONES (MÁS) */
-function crearCorazon() {
-  const corazon = document.createElement("div");
-  corazon.className = "corazon";
-  corazon.innerText = "❤️";
-  corazon.style.left = Math.random() * 100 + "vw";
-  corazon.style.fontSize = (14 + Math.random() * 26) + "px";
-  document.body.appendChild(corazon);
-
-  setTimeout(() => corazon.remove(), 6000);
+function abrirSobre() {
+  document.querySelector(".sobre").classList.add("abierto");
 }
-setInterval(crearCorazon, 180);
 
-/* HELLO KITTY FLOTANDO */
-function crearKitty() {
-  const kitty = document.createElement("img");
-  kitty.src = "hello.png"; // tu imagen recortada
-  kitty.className = "kitty";
-  kitty.style.left = Math.random() * 100 + "vw";
-  kitty.style.width = (40 + Math.random() * 35) + "px";
-  document.body.appendChild(kitty);
-
-  setTimeout(() => kitty.remove(), 9000);
+function mostrarMensaje() {
+  const msg = document.createElement("div");
+  msg.className = "mensaje";
+  msg.innerHTML = "💖<br>Eres el amor de mi vida Kami<br>💖";
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 3500);
 }
-setInterval(crearKitty, 1600);
+
+function corazon() {
+  const c = document.createElement("div");
+  c.className = "corazon";
+  c.innerText = Math.random() > 0.5 ? "❤️" : "💖";
+  c.style.left = Math.random() * 100 + "vw";
+  c.style.fontSize = (14 + Math.random() * 26) + "px";
+  document.body.appendChild(c);
+  setTimeout(() => c.remove(), 6000);
+}
+setInterval(corazon, 150);
+
+function kitty() {
+  const k = document.createElement("img");
+  k.src = "hello.png";
+  k.className = "kitty";
+  k.style.left = Math.random() * 100 + "vw";
+  k.style.width = (40 + Math.random() * 30) + "px";
+  document.body.appendChild(k);
+  setTimeout(() => k.remove(), 8000);
+}
+setInterval(kitty, 1800);
 </script>
 
 </body>
 </html>
-
-</html>
-
 
 
