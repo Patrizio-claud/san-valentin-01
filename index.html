@@ -24,23 +24,32 @@ body {
 /* SOBRE */
 .sobre {
   position: relative;
-  width: 340px;
-  height: 520px;
+  width: 360px;
+  height: 240px;
   cursor: pointer;
+  perspective: 1000px;
+}
+
+/* CUERPO DEL SOBRE */
+.espalda {
+  position: absolute;
+  inset: 0;
+  background: #ff6f91;
+  border-radius: 12px;
+  z-index: 1;
+  border: 2px solid rgba(255,255,255,0.6);
 }
 
 /* SOLAPA */
 .solapa {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 45%;
+  height: 100%;
   background: #ff4d6d;
-  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  clip-path: polygon(0 0, 50% 60%, 100% 0);
   transform-origin: top;
-  transition: transform 1s ease, opacity 0.5s ease;
-  z-index: 4;
+  transition: transform 1s ease;
+  z-index: 3;
 }
 
 /* CARTA */
@@ -50,35 +59,39 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateY(80px);
+  transition: transform 1s ease;
   z-index: 2;
 }
 
 /* TARJETA */
 .tarjeta {
   background: #fff;
-  padding: 25px;
+  padding: 30px;
   border-radius: 20px;
   text-align: center;
   width: 300px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-
   opacity: 0;
-  transform: translateY(40px) scale(0.9);
+  transform: scale(0.9);
   transition: all 1s ease;
 }
 
-/* ABRIR SOBRE */
-.sobre.abierto .tarjeta {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
+/* SOBRE ABIERTO */
 .sobre.abierto .solapa {
   transform: rotateX(-180deg);
-  opacity: 0;
 }
 
-/* CONTENIDO */
+.sobre.abierto .carta {
+  transform: translateY(-40px);
+}
+
+.sobre.abierto .tarjeta {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* TARJETA CONTENIDO */
 img {
   width: 100%;
   border-radius: 15px;
@@ -87,12 +100,10 @@ img {
 
 h1 {
   color: #e63946;
-  margin-bottom: 10px;
 }
 
 p {
   color: #444;
-  font-size: 16px;
 }
 
 button {
@@ -113,7 +124,7 @@ button:hover {
 /* CORAZONES */
 .corazon {
   position: absolute;
-  color: rgba(255,0,80,0.5);
+  color: rgba(255,0,80,0.6);
   font-size: 20px;
   animation: flotar 6s linear infinite;
 }
@@ -129,16 +140,20 @@ button:hover {
 
 <div class="contenedor">
   <div class="sobre" id="sobre" onclick="abrirSobre()">
+    <div class="espalda"></div>
     <div class="solapa"></div>
 
     <div class="carta">
       <div class="tarjeta">
-        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="">
-        <h1>Oliss mi Amoooor</h1>
-        <p>💖</p>
-        <p>Desde que te conocí mi mundo empezó a brillar 💕<br>
-        ¿Te gustaría ser mi San Valentín? 💞</p>
-        <button>Toca aquí</button>
+        <img src="foto.jpg">
+        <h1>Oliss mi Amoooor ❤️</h1>
+        <p>
+          Desde que te conocí mi mundo empezó a brillar 💖<br>
+          ¿Te gustaría ser mi San Valentín? 💕
+        </p>
+        <button onclick="alert('💖 Sabía que dirías que sí 💖')">
+          Toca aquí
+        </button>
       </div>
     </div>
   </div>
@@ -154,7 +169,7 @@ function crearCorazon() {
   corazon.className = "corazon";
   corazon.innerText = "❤️";
   corazon.style.left = Math.random() * 100 + "vw";
-  corazon.style.fontSize = (15 + Math.random() * 20) + "px";
+  corazon.style.fontSize = (20 + Math.random() * 20) + "px";
   document.body.appendChild(corazon);
   setTimeout(() => corazon.remove(), 6000);
 }
@@ -164,4 +179,3 @@ setInterval(crearCorazon, 300);
 
 </body>
 </html>
-
