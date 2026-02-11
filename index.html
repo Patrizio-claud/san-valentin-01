@@ -5,6 +5,25 @@
   <title>❤️ Para Ti Mi Niña ❤️</title>
 
   <style>
+    /* ANIMACIÓN DE ENTRADA DE LA CARTA */
+.tarjeta {
+  animation: cartaEntrada 1.4s ease-out;
+}
+
+@keyframes cartaEntrada {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.03);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
     .tarjeta {
   animation: entradaSuave 1.2s ease;
 }
@@ -145,4 +164,5 @@ h1, p, button {
 
 </body>
 </html>
+
 
