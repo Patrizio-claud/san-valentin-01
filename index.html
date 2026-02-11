@@ -2,30 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>❤️ Para Ti Mi Niña ❤️</title>
 
 <style>
-/* HELLO KITTY FLOTANDO */
-.kitty {
-  position: absolute;
-  bottom: -60px;
-  animation: flotarKitty 8s linear forwards;
-  opacity: 0.9;
-  pointer-events: none;
-}
-
-@keyframes flotarKitty {
-  from {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-120vh) rotate(20deg);
-    opacity: 0;
-  }
-}
-
-/* BODY */
+/* FONDO */
 body {
   margin: 0;
   height: 100vh;
@@ -41,9 +22,10 @@ body {
 .tarjeta {
   background: #fff;
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 22px;
   text-align: center;
-  width: 300px;
+  width: 90%;
+  max-width: 340px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
   animation: aparecer 1.2s ease forwards;
   z-index: 10;
@@ -60,20 +42,23 @@ body {
   }
 }
 
-img {
+/* IMAGEN */
+.tarjeta img {
   width: 100%;
-  border-radius: 15px;
+  border-radius: 16px;
   margin-bottom: 15px;
 }
 
+/* TEXTO */
 h1 {
   color: #e63946;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  font-size: 22px;
 }
 
 p {
   color: #444;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.4;
 }
 
@@ -83,37 +68,63 @@ button {
   background: #e63946;
   color: white;
   border: none;
-  padding: 12px 22px;
+  padding: 12px 26px;
   border-radius: 30px;
   font-size: 16px;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-  position: relative;
-  z-index: 20;
 }
 
 button:hover {
   transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
 /* CORAZONES */
 .corazon {
   position: absolute;
-  color: rgba(255, 0, 80, 0.6);
-  animation: flotar 6s linear infinite;
+  bottom: -20px;
+  color: rgba(255, 0, 80, 0.7);
+  animation: flotar 6s linear forwards;
   user-select: none;
+  pointer-events: none;
 }
 
 @keyframes flotar {
   from {
-    transform: translateY(100vh);
+    transform: translateY(0);
     opacity: 1;
   }
   to {
-    transform: translateY(-10vh);
+    transform: translateY(-120vh);
     opacity: 0;
   }
+}
+
+/* HELLO KITTY */
+.kitty {
+  position: absolute;
+  bottom: -60px;
+  animation: flotarKitty 9s linear forwards;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+@keyframes flotarKitty {
+  from {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-130vh) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+/* AJUSTES CELULAR */
+@media (max-width: 600px) {
+  h1 { font-size: 20px; }
+  p { font-size: 14px; }
 }
 </style>
 </head>
@@ -133,35 +144,38 @@ button:hover {
 <script>
 /* BOTÓN */
 document.getElementById("btnAmor").addEventListener("click", () => {
-  alert("💖 Sabía que dirías que sí 💖");
+  alert("💖 Eres el amor de mi vida Kami 💖");
 });
 
-/* CORAZONES */
+/* CORAZONES (MÁS) */
 function crearCorazon() {
   const corazon = document.createElement("div");
   corazon.className = "corazon";
   corazon.innerText = "❤️";
   corazon.style.left = Math.random() * 100 + "vw";
-  corazon.style.fontSize = (16 + Math.random() * 24) + "px";
+  corazon.style.fontSize = (14 + Math.random() * 26) + "px";
   document.body.appendChild(corazon);
 
   setTimeout(() => corazon.remove(), 6000);
 }
-setInterval(crearCorazon, 300);
+setInterval(crearCorazon, 180);
 
-/* HELLO KITTY */
+/* HELLO KITTY FLOTANDO */
 function crearKitty() {
   const kitty = document.createElement("img");
-  kitty.src = "hello.png"; // asegúrate que esté en la misma carpeta
+  kitty.src = "hello.png"; // tu imagen recortada
   kitty.className = "kitty";
   kitty.style.left = Math.random() * 100 + "vw";
-  kitty.style.width = (40 + Math.random() * 30) + "px";
+  kitty.style.width = (40 + Math.random() * 35) + "px";
   document.body.appendChild(kitty);
 
-  setTimeout(() => kitty.remove(), 8000);
+  setTimeout(() => kitty.remove(), 9000);
 }
-setInterval(crearKitty, 2000);
+setInterval(crearKitty, 1600);
 </script>
 
 </body>
 </html>
+
+</html>
+
