@@ -16,69 +16,29 @@ body {
   overflow: hidden;
 }
 
-/* CONTENEDOR */
-.contenedor {
-  position: relative;
-}
-
-/* SOBRE */
-.sobre {
-  position: relative;
-  width: 340px;
-  height: 520px;
-  cursor: pointer;
-}
-
-/* SOLAPA */
-.solapa {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 45%;
-  background: #ff4d6d;
-  clip-path: polygon(0 0, 50% 100%, 100% 0);
-  transform-origin: top;
-  transition: transform 1s ease, opacity 0.5s ease;
-  z-index: 4;
-}
-
-/* CARTA */
-.carta {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-}
-
 /* TARJETA */
 .tarjeta {
   background: #fff;
-  padding: 25px;
+  padding: 30px;
   border-radius: 20px;
   text-align: center;
   width: 300px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-
-  opacity: 0;
-  transform: translateY(40px) scale(0.9);
-  transition: all 1s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  animation: aparecer 1.2s ease forwards;
+  z-index: 10;
 }
 
-/* ABRIR SOBRE */
-.sobre.abierto .tarjeta {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.sobre.abierto .solapa {
-  transform: rotateX(-180deg);
-  opacity: 0;
-}
-
-/* CONTENIDO */
 img {
   width: 100%;
   border-radius: 15px;
@@ -87,84 +47,82 @@ img {
 
 h1 {
   color: #e63946;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 p {
   color: #444;
   font-size: 16px;
+  line-height: 1.4;
 }
 
 button {
-  margin-top: 15px;
+  margin-top: 18px;
   background: #e63946;
   color: white;
   border: none;
-  padding: 12px 20px;
+  padding: 12px 22px;
   border-radius: 30px;
   font-size: 16px;
   cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  z-index: 20;
 }
 
 button:hover {
   transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 /* CORAZONES */
 .corazon {
   position: absolute;
-  color: rgba(255,0,80,0.5);
-  font-size: 20px;
+  color: rgba(255, 0, 80, 0.6);
   animation: flotar 6s linear infinite;
+  user-select: none;
 }
 
 @keyframes flotar {
-  from { transform: translateY(100vh); opacity: 1; }
-  to { transform: translateY(-10vh); opacity: 0; }
+  from {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
 }
 </style>
 </head>
 
-  <script>
-  document.getElementById("btnAmor").addEventListener("click", () => {
-    alert("💖 Sabía que dirías que sí 💖");
-  });
-</script>
-
 <body>
 
-<div class="contenedor">
-  <div class="sobre" id="sobre" onclick="abrirSobre()">
-    <div class="solapa"></div>
-
-    <div class="carta">
-      <div class="tarjeta">
-       <img src="fot.jpg" alt="Nuestra foto">
-        <h1>Oliss mi Amoooor</h1>
-        <p>💖</p>
-        <p>Desde que te conocí mi mundo empezó a brillar 💕<br>
-        ¿Te gustaría ser mi San Valentín? 💞</p>
-       <button id="btnAmor">
-  Toca aquí
-</button>
-
-      </div>
-    </div>
-  </div>
+<div class="tarjeta">
+  <img src="foto.jpg" alt="Nuestra foto">
+  <h1>Oliss mi Amoooor ❤️</h1>
+  <p>
+    Desde que te conocí mi mundo empezó a brillar 💖<br>
+    ¿Te gustaría ser mi San Valentín? 💕
+  </p>
+  <button id="btnAmor">Toca aquí</button>
 </div>
 
 <script>
-function abrirSobre() {
-  document.getElementById("sobre").classList.add("abierto");
-}
+/* BOTÓN */
+document.getElementById("btnAmor").addEventListener("click", () => {
+  alert("💖 Sabía que dirías que sí 💖");
+});
 
+/* CORAZONES */
 function crearCorazon() {
   const corazon = document.createElement("div");
   corazon.className = "corazon";
   corazon.innerText = "❤️";
   corazon.style.left = Math.random() * 100 + "vw";
-  corazon.style.fontSize = (15 + Math.random() * 20) + "px";
+  corazon.style.fontSize = (16 + Math.random() * 24) + "px";
   document.body.appendChild(corazon);
+
   setTimeout(() => corazon.remove(), 6000);
 }
 
@@ -173,7 +131,3 @@ setInterval(crearCorazon, 300);
 
 </body>
 </html>
-
-
-
-
