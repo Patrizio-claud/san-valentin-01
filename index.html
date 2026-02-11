@@ -6,9 +6,9 @@
 <title>💖 Para Ti Mi Amor 💖</title>
 
 <style>
-/* =================== */
+/* ===================== */
 /* FONDO GENERAL */
-/* =================== */
+/* ===================== */
 body {
   margin: 0;
   min-height: 100vh;
@@ -19,83 +19,79 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 40px;
+  padding: 40px 0;
 }
 
-/* =================== */
+/* CONTENEDOR CENTRAL */
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===================== */
 /* SOBRE */
-/* =================== */
+/* ===================== */
 .sobre {
-  width: 340px;
-  min-height: 230px;
-  background: #f1c0c8;
   position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  cursor: pointer;
+  width: 340px;
+  background: #f1c0c8;
+  border-radius: 14px;
   box-shadow: 0 15px 40px rgba(0,0,0,.3);
+  overflow: hidden;
 }
 
 /* SOLAPA */
 .solapa {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 0;
   height: 0;
   border-left: 170px solid transparent;
   border-right: 170px solid transparent;
   border-top: 120px solid #eaa0aa;
-
-  top: -20px;
-  left: 0;
-
-  transform-origin: top center;
-  transition: transform 1s;
+  transform-origin: top;
+  transition: transform 1s ease;
   z-index: 5;
 }
 
 .sobre.abierto .solapa {
-  transform: translateY(20px);
+  transform: rotateX(180deg);
 }
 
-/* =================== */
+/* ===================== */
 /* CARTA */
-/* =================== */
+/* ===================== */
 .carta {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  padding: 140px 0 30px;
   display: flex;
   justify-content: center;
-  align-items: center;
-
-  transform: translateY(40px);
   opacity: 0;
+  transform: translateY(30px);
   transition: all 1s ease;
 }
 
 .sobre.abierto .carta {
-  transform: translateY(-40px);
   opacity: 1;
+  transform: translateY(0);
 }
 
-/* =================== */
 /* TARJETA */
-/* =================== */
 .tarjeta {
   background: #fff;
   padding: 18px;
   border-radius: 22px;
   text-align: center;
-
   width: 88%;
   max-width: 300px;
-
   box-shadow: 0 18px 35px rgba(0,0,0,0.25);
 }
 
 .tarjeta img {
   width: 100%;
-  border-radius: 15px;
+  border-radius: 16px;
   margin-bottom: 10px;
 }
 
@@ -109,7 +105,6 @@ p {
   color: #444;
 }
 
-/* BOTÓN */
 button {
   margin-top: 15px;
   background: #e63946;
@@ -121,32 +116,31 @@ button {
   cursor: pointer;
 }
 
-/* =================== */
-/* MENSAJE EMERGENTE */
-/* =================== */
+/* ===================== */
+/* MENSAJE */
+/* ===================== */
 .mensaje {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,.3);
+  z-index: 999;
+}
+
+.mensaje div {
   background: white;
   padding: 25px 30px;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0,0,0,.4);
   font-size: 18px;
   text-align: center;
-  z-index: 999;
-  animation: aparecer .5s ease;
 }
 
-@keyframes aparecer {
-  from { opacity: 0; transform: translate(-50%, -60%); }
-  to { opacity: 1; transform: translate(-50%, -50%); }
-}
-
-/* =================== */
+/* ===================== */
 /* CORAZONES */
-/* =================== */
+/* ===================== */
 .corazon {
   position: absolute;
   bottom: -20px;
@@ -161,9 +155,7 @@ button {
   }
 }
 
-/* =================== */
 /* HELLO KITTY */
-/* =================== */
 .kitty {
   position: absolute;
   bottom: -60px;
@@ -178,29 +170,12 @@ button {
   }
 }
 
-/* =================== */
-/* AJUSTES CELULAR */
-/* =================== */
+/* ===================== */
+/* CELULAR */
+/* ===================== */
 @media (max-width: 480px) {
-   .sobre {
-    min-height: 360px;
-  }
-
-  .carta {
-    align-items: flex-start;
-    padding-top: 20px;
-  }
   body {
-    padding-top: 30px;
-  }
-
-  .sobre {
-    height: 210px;
-  }
-
-  .solapa {
-    top: -35px;
-    transform: scale(0.85);
+    padding: 30px 0;
   }
 
   h1 {
@@ -210,28 +185,26 @@ button {
   p {
     font-size: 14px;
   }
-
-  .tarjeta img {
-    border-radius: 14px;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="sobre" onclick="abrirSobre()">
-  <div class="solapa"></div>
+<div class="wrapper">
+  <div class="sobre" onclick="abrirSobre()">
+    <div class="solapa"></div>
 
-  <div class="carta">
-    <div class="tarjeta">
-      <img src="foto.jpg" alt="Nuestra foto">
-      <h1>Oliss mi Amoooor ❤️</h1>
-      <p>
-        Desde que te conocí mi mundo cambió 💖<br>
-        ¿Quieres ser mi San Valentín? 💕
-      </p>
-      <button onclick="mostrarMensaje()">Toca aquí</button>
+    <div class="carta">
+      <div class="tarjeta">
+        <img src="foto.jpg">
+        <h1>Oliss mi Amoooor ❤️</h1>
+        <p>
+          Desde que te conocí mi mundo cambió 💖<br>
+          ¿Quieres ser mi San Valentín? 💕
+        </p>
+        <button onclick="mostrarMensaje(event)">Toca aquí</button>
+      </div>
     </div>
   </div>
 </div>
@@ -241,16 +214,21 @@ function abrirSobre() {
   document.querySelector(".sobre").classList.add("abierto");
 }
 
-function mostrarMensaje() {
-  const msg = document.createElement("div");
-  msg.className = "mensaje";
-  msg.innerHTML = "💖<br>Eres el amor de mi vida Kami<br>💖";
-  document.body.appendChild(msg);
-  setTimeout(() => msg.remove(), 3500);
+function mostrarMensaje(e) {
+  e.stopPropagation();
+
+  const overlay = document.createElement("div");
+  overlay.className = "mensaje";
+  overlay.innerHTML = `
+    <div>💖<br>Eres el amor de mi vida Kami<br>💖</div>
+  `;
+  document.body.appendChild(overlay);
+
+  overlay.onclick = () => overlay.remove();
 }
 
 /* CORAZONES */
-function crearCorazon() {
+setInterval(() => {
   const c = document.createElement("div");
   c.className = "corazon";
   c.innerText = Math.random() > 0.5 ? "❤️" : "💖";
@@ -258,11 +236,10 @@ function crearCorazon() {
   c.style.fontSize = (14 + Math.random() * 26) + "px";
   document.body.appendChild(c);
   setTimeout(() => c.remove(), 6000);
-}
-setInterval(crearCorazon, 150);
+}, 150);
 
 /* HELLO KITTY */
-function crearKitty() {
+setInterval(() => {
   const k = document.createElement("img");
   k.src = "hello.png";
   k.className = "kitty";
@@ -270,10 +247,8 @@ function crearKitty() {
   k.style.width = (40 + Math.random() * 30) + "px";
   document.body.appendChild(k);
   setTimeout(() => k.remove(), 8000);
-}
-setInterval(crearKitty, 1800);
+}, 1800);
 </script>
 
 </body>
 </html>
-
