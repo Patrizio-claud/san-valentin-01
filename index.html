@@ -16,16 +16,25 @@
       overflow: hidden;
     }
 
-    .tarjeta {
-      background: #fff;
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      width: 300px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      animation: aparecer 1s ease;
-      z-index: 2;
-    }
+   .tarjeta {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  z-index: 2;
+
+  /* NUEVO */
+  opacity: 0;
+  transform: translateY(40px) scale(0.9);
+  transition: all 1s ease;
+}
+.sobre.abierto .tarjeta {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 
     @keyframes aparecer {
       from { opacity: 0; transform: scale(0.8); }
@@ -115,3 +124,4 @@
 
 </body>
 </html>
+
